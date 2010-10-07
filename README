@@ -1,0 +1,4 @@
+Bash Scripts and aliases that simplify the usage of GIT
+
+* gc  - clones a github repository in specified folder format
+* gua - update all git repos in the current directory
