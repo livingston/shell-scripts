@@ -8,7 +8,11 @@ gc()
 {
   str=$1
 
-  uvar=`echo $str | sed s:\.git::g | awk -F '/' '{printf("%s_%s", $3, $4)}'`
+  if [ $str ]; then
+    uvar=`echo $str | sed s:\.git::g | awk -F '/' '{printf("%s_%s", $3, $4)}'`
 
-  git clone $str $uvar
+    git clone $str $uvar
+  else
+    echo 'Enter a valid repo URL'
+  fi
 }
