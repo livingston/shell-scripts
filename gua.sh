@@ -4,6 +4,7 @@
 
 gua()
 {
+startt=`date +%s`
 base=$(pwd)
 folder_list=$(find -type d -maxdepth 2 -name '.git')
 folder_size=`echo ${folder_list[@]} | sed s:/\.git:'\n':g | grep -c './'`
@@ -20,4 +21,5 @@ do
   cd $base
 done
 echo -ne '\n'
+echo -ne "\nUpdate completed in $((`date +%s` - $startt)) secs. \n"
 }
