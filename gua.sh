@@ -5,18 +5,18 @@
 gua()
 {
 base=$(pwd)
-folder_list=$(find -type d -maxdepth 1)
-folder_size=$(find -type d -maxdepth 1| wc -l)
+folder_list=$(find -type d -maxdepth 2 -name '.git')
+folder_size=`echo ${folder_list[@]} | sed s:/\.git:'\n':g | grep -c './'`
 count=0
-for folder in $folder_list
+echo -ne '\n'
+for repo_path in $folder_list
 do
   count=$[$count+1]
-  echo -ne "Updating $count of $folder_size \r";
+  folder=`echo $repo_path | awk -F '/' '{printf("%s", $2)}'`
 
   cd $folder
-  if [ -d ".git" ]; then
+    echo -ne "Updating $count of $folder_size \r";
     git pull > /dev/null 2>&1
-  fi
   cd $base
 done
 echo -ne '\n'
