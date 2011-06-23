@@ -7,15 +7,15 @@ gua()
 startt=`date +%s`
 base=$(pwd)
 folder_list=$(find -type d -maxdepth 2 -name '.git')
-folder_size=`echo ${folder_list[@]} | sed s:/\.git:'\n':g | grep -c './'`
+
+folder_size=`echo $folder_list | wc -w`
 count=0
 echo -ne '\n'
 for repo_path in $folder_list
 do
-  count=$[$count+1]
-  folder=`echo $repo_path | awk -F '/' '{printf("%s", $2)}'`
+  let count+=1
 
-  cd $folder
+  cd $repo_path
     echo -ne "Updating $count of $folder_size \r";
     git pull > /dev/null 2>&1
   cd $base
