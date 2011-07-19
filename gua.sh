@@ -15,7 +15,7 @@ for repo_path in $folder_list
 do
   let count+=1
 
-  cd $repo_path
+  cd $(echo $repo_path"\..")
     echo -ne "Updating $count of $folder_size \r";
     git pull > /dev/null 2>&1
   cd $base
