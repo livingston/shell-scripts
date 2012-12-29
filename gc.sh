@@ -9,7 +9,7 @@ gc()
   str=$1
 
   if [ $str ]; then
-    uvar=`echo $str | sed s:\.git::g | awk -F '/' '{printf("%s_%s", $3, $4)}'`
+    uvar=`echo $str | perl -pe 's/(git|https)+(@|:|\/)+[^:\/]*[:\/]{1}([^\/]*)\/([^\/]*)\.git/"$3_$4"/e'`
 
     git clone $str $uvar
   else
