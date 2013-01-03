@@ -9,7 +9,7 @@ gc()
   str=$1
 
   if [ $str ]; then
-    uvar=`echo $str | perl -pe 's/(git|https)+(@|:|\/)+[^:\/]*[:\/]{1}([^\/]*)\/([^\/]*)\.git/"$3_$4"/e'`
+    uvar=`echo $str | perl -pe 's/(git|https)+[@\:\/]+[^:\/]*[:\/]{1}([^\/]*)\/([^\/]*)\.git/"$2_$3"/e'
 
     git clone $str $uvar
   else
